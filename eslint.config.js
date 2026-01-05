@@ -1,5 +1,6 @@
 import js from '@eslint/js';
 import checkFile from 'eslint-plugin-check-file';
+import { projectStructurePlugin } from 'eslint-plugin-project-structure';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import { defineConfig, globalIgnores } from 'eslint/config';
@@ -49,6 +50,20 @@ export default defineConfig([
                'src/**': 'KEBAB_CASE',
             },
          ],
+      },
+   },
+   {
+      files: ['**/*.{ts,tsx}'],
+      plugins: {
+         'project-structure': projectStructurePlugin,
+      },
+      settings: {
+         'project-structure/independent-modules-config-path':
+            'independentModules.json',
+      },
+      rules: {
+         'project-structure/independent-modules': 'error',
+         ...reactHooks.configs.recommended.rules,
       },
    },
 ]);
