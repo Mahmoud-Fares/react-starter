@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
+import { Button } from '@/shared/components/ui/button';
+
 export default function NotFound() {
    const navigate = useNavigate();
 
@@ -13,13 +15,13 @@ export default function NotFound() {
                The page you are looking for does not exist
             </p>
             <div className='flex justify-center gap-4 pt-4'>
-               <button
+               <Button
                   onClick={() =>
-                     void navigate('/', { replace: true, viewTransition: true })
+                     navigate('/', { replace: true, viewTransition: true })
                   }
                >
                   Go Home
-               </button>
+               </Button>
             </div>
          </div>
       </div>

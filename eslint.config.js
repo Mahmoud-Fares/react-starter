@@ -15,7 +15,9 @@ export default defineConfig([
       files: ['**/*.{ts,tsx}'],
       extends: [
          js.configs.recommended,
+         tseslint.configs.recommended,
          tseslint.configs.recommendedTypeChecked,
+         tseslint.configs.stylisticTypeChecked,
          reactHooks.configs.flat.recommended,
          reactRefresh.configs.vite,
       ],
@@ -49,6 +51,10 @@ export default defineConfig([
                allowNumber: false,
                allowNullableObject: false,
             },
+         ],
+         '@typescript-eslint/no-misused-promises': [
+            'error',
+            { checksVoidReturn: { attributes: false } },
          ],
       },
    },

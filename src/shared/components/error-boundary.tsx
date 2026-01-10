@@ -1,5 +1,7 @@
 import { useNavigate, useRouteError } from 'react-router-dom';
 
+import { Button } from '@/shared/components/ui/button';
+
 export default function ErrorBoundary() {
    const error = useRouteError();
    const navigate = useNavigate();
@@ -18,19 +20,19 @@ export default function ErrorBoundary() {
             </p>
 
             <div className='flex justify-center gap-4'>
-               <button
+               <Button
                   onClick={() => window.location.assign(window.location.origin)}
                >
                   Refresh
-               </button>
+               </Button>
 
-               <button
+               <Button
                   onClick={() =>
-                     void navigate('/', { replace: true, viewTransition: true })
+                     navigate('/', { replace: true, viewTransition: true })
                   }
                >
                   Go Home
-               </button>
+               </Button>
             </div>
          </div>
       </div>
