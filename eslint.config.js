@@ -1,5 +1,7 @@
 import js from '@eslint/js';
 import checkFile from 'eslint-plugin-check-file';
+import nPlugin from 'eslint-plugin-n';
+import noRelativeImportPaths from 'eslint-plugin-no-relative-import-paths';
 import { projectStructurePlugin } from 'eslint-plugin-project-structure';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
@@ -20,6 +22,9 @@ export default defineConfig([
       languageOptions: {
          ecmaVersion: 2020,
          globals: globals.browser,
+         parserOptions: {
+            projectService: true,
+         },
       },
    },
    {
@@ -27,6 +32,54 @@ export default defineConfig([
       rules: {
          'prefer-arrow-callback': 'error',
          'prefer-template': 'error',
+
+         '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+         '@typescript-eslint/consistent-type-imports': [
+            'warn',
+            { prefer: 'type-imports', fixStyle: 'inline-type-imports' },
+         ],
+         '@typescript-eslint/no-floating-promises': 'error',
+         '@typescript-eslint/no-unnecessary-condition': 'warn',
+         '@typescript-eslint/prefer-nullish-coalescing': 'warn',
+         '@typescript-eslint/switch-exhaustiveness-check': 'error',
+         '@typescript-eslint/strict-boolean-expressions': [
+            'error',
+            {
+               allowString: false,
+               allowNumber: false,
+               allowNullableObject: false,
+            },
+         ],
+      },
+   },
+   {
+      files: ['**/*.{ts,tsx}'],
+      plugins: {
+         'no-relative-import-paths': noRelativeImportPaths,
+      },
+      rules: {
+         'no-relative-import-paths/no-relative-import-paths': [
+            'warn',
+            { allowSameFolder: true, rootDir: 'src', prefix: '@' },
+         ],
+      },
+   },
+   {
+      files: ['**/*.{ts,tsx}'],
+      ignores: ['**/env.ts'],
+      plugins: {
+         n: nPlugin,
+      },
+      rules: {
+         'n/no-process-env': ['error'],
+         'no-restricted-syntax': [
+            'error',
+            {
+               selector:
+                  'MemberExpression[object.property.name="env"][object.object.type="MetaProperty"]',
+               message: 'Use env from @/env instead of import.meta.env',
+            },
+         ],
       },
    },
    {
