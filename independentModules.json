@@ -41,7 +41,7 @@
       }
    ],
    "reusableImportPatterns": {
-      "sharedImports": ["src/shared/**/*"],
+      "sharedImports": ["src/shared/**/*", "src/env.ts"],
       "featurePublicApis": ["src/features/*/index.ts"]
    }
 }
