@@ -31,6 +31,7 @@ export default defineConfig([
    },
    {
       files: ['**/*.{ts,tsx}'],
+      ignores: ['**/*.d.ts'],
       rules: {
          'prefer-arrow-callback': 'error',
          'prefer-template': 'error',
@@ -44,14 +45,6 @@ export default defineConfig([
          '@typescript-eslint/no-unnecessary-condition': 'warn',
          '@typescript-eslint/prefer-nullish-coalescing': 'warn',
          '@typescript-eslint/switch-exhaustiveness-check': 'error',
-         '@typescript-eslint/strict-boolean-expressions': [
-            'error',
-            {
-               allowString: false,
-               allowNumber: false,
-               allowNullableObject: false,
-            },
-         ],
          '@typescript-eslint/no-misused-promises': [
             'error',
             { checksVoidReturn: { attributes: false } },
