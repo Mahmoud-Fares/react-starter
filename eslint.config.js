@@ -26,6 +26,7 @@ export default defineConfig([
          globals: globals.browser,
          parserOptions: {
             projectService: true,
+            tsconfigRootDir: import.meta.dirname,
          },
       },
    },
@@ -115,7 +116,6 @@ export default defineConfig([
       },
       rules: {
          'project-structure/independent-modules': 'error',
-         ...reactHooks.configs.recommended.rules,
       },
    },
 ]);
